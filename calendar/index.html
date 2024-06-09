@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="container"><input class="mt-4 mb-3" id="print">
+    <div id="cld" style="width:300px;display:none;">
+    <div><button type="button" onclick="chg(-1)"><i class="fa fa-chevron-left"></i></button>
+<input  id="year" onchange="chg()" style='width: 80px;display: initial;'type="number">
+<select id="month"onchange="chg()" style='width: 80px;height:30px; display: initial' >
+    <option value=1>1월</option><option value=2>2월</option><option value=3>3월</option><option value=4>4월</option>
+<option value=5>5월</option><option value=6>6월</option><option value="7">7월</option><option value=8>8월</option>
+<option value=9>9월</option><option value=10>10월</option><option value=11>11월</option><option value=12>12월</option>
+</select>
+<button type="button" onclick="chg(1)"><i class="fa fa-chevron-right"></i></button>
+</div>
+<table class="table table-bordered">
+<thead>
+<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
+<tbody id="bd"></tbody>
+</table></div> 
+</div>
+<script>
+$('#print').click(()=>{$('#cld').toggle()})
+function picker(d){console.log(cm);
+    if(d<10) d='0'+d;  if(cm<10 && cm[0] != '0') cm='0'+cm;
+ $('#print').val(cy+'-'+cm+'-'+d);$('#cld').hide()}
+function leapy(y){ if(y%400==0){ return true;}else if(y%100==0){ return false;
+}else if(y%4==0){ return true}else{return false}
+    }
+function single(y,m){ return (new Date(y+'-'+m+'-1')).getDay()
+}
+function render(d){let h=[];for(i=0;i<d.length;i++){if(i==0){h.push('<tr>')
+}else if(i%7==0){h.push('</tr>');h.push('<tr>')}
+h.push('<td onclick="picker('+d[i]+')" style="cursor:pointer">'+d[i]+'</td>')
+} h.push('</tr>'); $('#bd').html(h.join('')) 
+}
+function day(y,m){let day=[31,28,31,30,31,30,31,31,30,31,30,31];
+if(m==2){if(leapy(y)) day[1]=29 }
+let fw=single(y,m),arr=[];
+for(i=0;i<fw;i++){arr.push('')}
+for(i=1;i<=day[m-1];i++){arr.push(i)}
+let rmd=7-(arr.length%7);
+if(rmd<7){for(i=0;i<rmd;i++){arr.push('')}}; render(arr)
+}
+function chg(ff){  if(ff==undefined){cy = parseInt($('#year').val());
+cm=parseInt($('#month').val())}else{cm=cm+ff;
+    if(cm==0){cy=cy-1; cm=12}else if(cm==13){cy=cy+1; cm=1}
+} load()}
+let cy=(new Date()).getFullYear(), cm=(new Date()).getMonth()+1;
+function load(){
+$('#year').val(cy); $('#month').val(cm);day(cy,cm) }
+load()
+// <select id="month" class='form-control'
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

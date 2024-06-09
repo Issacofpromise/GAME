@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>만 나이 계산기</title>
+</head>
+<body>
+	<h1>만 나이 계산기</h1>
+	<form>
+		<label for="birthday">생년월일:</label>
+		<input type="date" id="birthday" name="birthday"><br><br>
+		<input type="button" value="만 나이 계산" onclick="calculateAge()">
+	</form>
+	<p id="result"></p>
+
+	<script>
+		function calculateAge() {
+			let birthday = new Date(document.getElementById("birthday").value);
+			let today = new Date()
+			let age = today.getFullYear() - birthday.getFullYear();
+			let month = today.getMonth() - birthday.getMonth();
+			if (month < 0 || (month === 0 && today.getDate() < birthday.getDate())) {
+				age--;
+			}
+			document.getElementById("result").innerHTML = "당신의 만 나이는 " + age + "세 입니다.";
+		}
+	</script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+  </style>
+</body>
+</html>

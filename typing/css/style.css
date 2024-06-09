@@ -1,0 +1,10 @@
+*{ margin: 0; padding: 0;}
+body{display: flex;flex-direction: column;justify-content: center;align-items: center;}
+.hea{width: 100%;background: #3b5999;color: #fff;text-align: center;padding: 1rem;}
+.dp{margin-top: 3rem; margin-bottom: 2rem;font-size: 80px;color: #3b5999;}
+.in{padding: 0.5rem;width: 300px;margin-bottom: 2rem;}
+.info{font-size: 0.9rem;display: flex;justify-content: space-between;width: 220px;
+    margin-bottom: 3rem;}
+.sec, .score{font-size: 30px;}
+button{width: 200px;height: 45px;background: #3b5999;color: #fff;border: none;cursor: pointer;}
+.loading{background: #ccc;cursor: not-allowed;  pointer-events: none;color:#3b5999;font-size: 17px;}
